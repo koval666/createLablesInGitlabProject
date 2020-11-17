@@ -27,9 +27,11 @@ public class Main {
         String projectId = buffer.readLine();
         System.out.println("Token:");
         String token = buffer.readLine();
+        System.out.println("URL:");
+        String url = buffer.readLine();
 
         for (Label label : labels) {
-            HttpResponse httpResponse = Request.Post("https://git.haulmont.com/api/v4/projects/" + projectId + "/labels")
+            HttpResponse httpResponse = Request.Post(url + "/api/v4/projects/" + projectId + "/labels")
                     .addHeader("PRIVATE-TOKEN", token)
                     .bodyForm(Form.form().add("name", label.getName())
                             .add("color", label.getColor()).build())
